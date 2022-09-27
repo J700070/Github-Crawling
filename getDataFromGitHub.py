@@ -22,11 +22,6 @@ def getData(table, query, page, entries_per_page):
     #get the json data
     data =  response.json()
 
-    # DEBUG TOOL
-    # Save data in a json file
-    with open("data.json", "w") as f:
-        json.dump(data, f)
-
     # General info
     metadata = {"Total Count": data["total_count"], "Incomplete Results": data["incomplete_results"]}
 
@@ -46,8 +41,6 @@ def getData(table, query, page, entries_per_page):
         url = repository["html_url"]
         description = repository["description"]
         size = repository["size"]
-
-        # use pandas concat
 
         # Add the new row to the table using pandas concat
         table = pd.concat([table, pd.Series({"Name":name, "Repository Name":repo_name, "Created Date":created_date, "Language":language, "Stars":stars, "Watchers":watchers, "Forks Count":forks_count, "Score":score, "Topics":topics, "Private":private, "Owner Name":owner_name, "URL":url, "Description":description, "Size":size}).to_frame().T], ignore_index=True)

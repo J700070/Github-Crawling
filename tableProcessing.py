@@ -27,8 +27,10 @@ def processTable(table, query, required_words, words_to_avoid, show_private, sor
 
     # Remove repositories that contain words to avoid
     for word in words_to_avoid:
-        # Search for the word in the description, the name or the topics
-        table = table[~table["Description"].str.contains(word, case=False) & ~table["Name"].str.contains(word, case=False) & ~table["Topics"].str.contains(word, case=False)]
-
+        # Search for the word in the description, the name, the topics or the language.
+        table = table[~table["Description"].str.contains(word, case=False, na=False)]
+        table = table[~table["Name"].str.contains(word, case=False, na=False)]
+        table = table[~table["Topics"].str.contains(word, case=False, na=False)]
+        table = table[~table["Language"].str.contains(word, case=False, na=False)]
     return table
 
