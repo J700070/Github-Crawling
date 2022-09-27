@@ -17,20 +17,20 @@ import pandas as pd
 
 
 
-def main():
+def githubSearchEngine(query, required_words, words_to_avoid, show_private, sort, ascending, entries_per_page, page, max_pages):
 
-    query= "summarizer"
-    required_words = []
-    words_to_avoid = []
-    show_private = False
-    sort = "Stars"
-    ascending = False
-    entries_per_page = 100
-    page = 0
-    max_pages = 5
+    # query= "summarizer"
+    # required_words = []
+    # words_to_avoid = []
+    # show_private = False
+    # sort = "Stars"
+    # ascending = False
+    # entries_per_page = 100
+    # page = 0
+    # max_pages = 5
     
-    total_count = -1
-    total_pages = 20
+    # total_count = -1
+    # total_pages = 20
 
     current_datetime = pd.to_datetime("today").strftime("%Y-%m-%d_%H-%M-%S")
 
@@ -76,8 +76,3 @@ def main():
 
 
 
-
-
-
-if __name__ == "__main__":
-    main()
