@@ -1,4 +1,3 @@
-from importlib.metadata import metadata
 import json
 import requests
 import pandas as pd
@@ -22,6 +21,7 @@ def getData(table, query, page, entries_per_page):
     #get the json data
     data =  response.json()
 
+
     # General info
     metadata = {"Total Count": data["total_count"], "Incomplete Results": data["incomplete_results"]}
 
@@ -32,7 +32,6 @@ def getData(table, query, page, entries_per_page):
         created_date = repository["created_at"]
         language = repository["language"]
         stars = repository["stargazers_count"]
-        watchers = repository["watchers_count"]
         forks_count = repository["forks_count"]
         score = repository["score"]
         topics = repository["topics"]
@@ -43,6 +42,7 @@ def getData(table, query, page, entries_per_page):
         size = repository["size"]
 
         # Add the new row to the table using pandas concat
-        table = pd.concat([table, pd.Series({"Name":name, "Repository Name":repo_name, "Created Date":created_date, "Language":language, "Stars":stars, "Watchers":watchers, "Forks Count":forks_count, "Score":score, "Topics":topics, "Private":private, "Owner Name":owner_name, "URL":url, "Description":description, "Size":size}).to_frame().T], ignore_index=True)
+        table = pd.concat([table, pd.Series({"Name":name, "Repository Name":repo_name, "Created Date":created_date, "Language":language, "Stars":stars, "Forks Count":forks_count, "Score":score, "Topics":topics, "Private":private, "Owner Name":owner_name, "URL":url, "Description":description, "Size":size}).to_frame().T], ignore_index=True)
 
+    
     return table, metadata
